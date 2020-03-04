@@ -1,0 +1,16 @@
+{
+  "name": "game-sea",
+  "version": "1.0.0",
+  "description": "Game of sea battle",
+  "main": "index.js",
+  "scripts": {
+    "start": "browser-sync start --server --port 3000 --no-notify reload --files=\"**/*\""
+  },
+  "keywords": [
+    "js",
+    "game",
+    "javascript"
+  ],
+  "author": "granthin",
+  "license": "ISC"
+}
