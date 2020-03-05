@@ -2,7 +2,7 @@
   "name": "game-sea",
   "version": "1.0.0",
   "description": "Game of sea battle",
-  "main": "index.js",
+  "main": "index.html",
   "scripts": {
     "start": "browser-sync start --server --port 3000 --no-notify reload --files=\"**/*\""
   },

@@ -23,8 +23,6 @@ const play = {
     }
 };
 
-let shipCount;
-
 const game = {
     ships: [
         {
@@ -101,22 +99,17 @@ const fire = event => {
                         play.record = play.shot;
                         play.render();
                     }
-
-
                 }
-
             }
         }
     }
-    
-    
 };
 
 const init = () => {
     enemy.addEventListener('click', fire);
     play.render();
     again.addEventListener('click', () => {
-        location.reload();
+    location.reload();
     })
 };
 
