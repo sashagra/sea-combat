@@ -27,8 +27,8 @@ const game = {
     ships: [],
     shipCount: 0,
     optionShip: {
-        count: [1, 2, 3, 4],
-        size: [4, 3, 2, 1],
+        count: [1, 2, 3, 4], // total ships with <size> elems
+        size: [4, 3, 2, 1], // number of elems of ship
     },
     collision: new Set(),
     generateShips() {
@@ -39,28 +39,23 @@ const game = {
                 this.ships.push(ship);
             }
         }
-        game.shipCount = game.ships.length;
-        
+        this.shipCount = this.ships.length;       
     },
     generateShip(shipSize) {
         const ship = {
             hit: [],
             location: [],
         };
-        let x, y;
-        
-            
 
+        let x, y;
         const direction = Math.random() < 0.5;
 
         if (direction) {
-            x = Math.floor(Math.random() * 10),
+            x = Math.floor(Math.random() * 10), // 10 is the size of the field
             y = Math.floor(Math.random() * (10 - shipSize));
-
         } else {
             x = Math.floor(Math.random() * (10 - shipSize)),
             y = Math.floor(Math.random() * 10);
-
         }
 
         for (let i = 0; i < shipSize; i++) {
@@ -99,7 +94,6 @@ const game = {
                     if (z >= 0 && z < 10 && j >= 0 && j < 10) {
                         const coord = j + '' + z;      
                         this.collision.add(coord);    
-
                     }
                 }
             }
@@ -122,7 +116,7 @@ const show = {
     } 
 };
 
-const shots = []; // Сделанные выстрелы
+let shots = []; // Done shots
 
 const fire = event => {
     const target = event.target;
@@ -165,13 +159,27 @@ const fire = event => {
     }
 };
 
+function startNewGame() {
+    // location.reload();
+    play.shot = 0;
+    play.hit = 0;
+    play.dead = 0;
+    shots = [];
+    game.ships = [];
+    game.collision = new Set();
+    game.generateShips();
+    document.querySelectorAll('TD').forEach(elem => elem.classList.remove('hit', 'dead', 'miss'));
+    header.style = "";
+    header.textContent = "sea battle"
+    enemy.addEventListener('click', fire);
+    play.render();
+}
+
 const init = () => {
     enemy.addEventListener('click', fire);
     play.render();
     game.generateShips();
-    again.addEventListener('click', () => {
-    location.reload();
-    })
+    again.addEventListener('click', startNewGame)
     record.addEventListener('dblclick', () => {
         localStorage.clear();
         play.record = 0;
@@ -180,4 +188,3 @@ const init = () => {
 };
 
 init();
-console.log(game);
