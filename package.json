@@ -12,5 +12,6 @@
     "javascript"
   ],
   "author": "granthin",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {}
 }

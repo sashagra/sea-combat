@@ -1,3 +1,5 @@
+'use strict';
+
 const record = document.getElementById('record'),
     shot = document.getElementById('shot'),
     hit = document.getElementById('hit'),
@@ -5,6 +7,8 @@ const record = document.getElementById('record'),
     enemy = document.getElementById('enemy'),
     again = document.getElementById('again'),
     header = document.querySelector('.header');
+
+const arrX = ['А', 'Б', 'В', 'Г', 'Д', 'Е', 'Ж', 'З', 'И', 'К'];
 
 const play = {
     record: localStorage.getItem('seaBattleRecord') || 0,
@@ -99,7 +103,7 @@ const game = {
             }
         }
     }
-}
+};
 
 const show = {
     hit(elem) {
@@ -131,11 +135,13 @@ const fire = event => {
         if (index >= 0) {
             show.hit(target);
             play.updateData = "hit";
+            console.log(`${arrX[target.id[0]] + target.id[1]} ПОПАЛ`);
             ship.hit[index] = 'x';
             const life = ship.hit.indexOf('');
 
             if (life < 0) {
                 play.updateData = 'dead';
+                console.log('==УБИТ==');
                 
                 for (const id of ship.location) {
                     show.dead(document.getElementById(id));

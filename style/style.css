@@ -85,7 +85,7 @@ a {
   }
   a:hover span:nth-child(1) {
     top: 0;
-    left: 0;
+    left: 0; 
   }
   a span:nth-child(2) {
     bottom: -100%;
